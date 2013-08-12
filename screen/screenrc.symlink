@@ -8,3 +8,12 @@ term xterm-256color
 nonblock "on"
 attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+#screens
+screen -t 'bash' 0
+
+#screens
+screen -t 'bash' 1
+
+#screens
+screen -t 'bash' 2
