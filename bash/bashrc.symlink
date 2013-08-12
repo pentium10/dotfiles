@@ -1,0 +1,43 @@
+# OS
+if [ -f /etc/fedora-release ]; then
+	export DOT_OS="fedora"
+else
+	if [ -x /usr/bin/lsb_release ]; then
+		export DOT_OS=$(lsb_release -d | awk '{ print tolower($2) }')
+	else
+		export DOT_OS="linux"
+	fi
+fi
+
+# atomic location of the dotfiles
+export DOTFILES=$HOME/.dotfiles
+
+# atomic location of the dotfiles bin (provided for convenience!)
+export DOT_BIN=$DOTFILES/bin
+
+# source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# source every .bsh file
+for config_file in $(find $DOTFILES -name "*.bsh" -print);
+do
+	. $config_file
+done
+
+# source private (i.e ECHO_NEST_API_KEY)
+if [ -f ~/.localrc ]; then
+    . ~/.localrc
+fi
+
+# rvm wizardry ... 
+if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+	if [ -f "$HOME/.rvm/scripts/Rvm" ]; then
+		. "$HOME/.rvm/scripts/Rvm"
+	fi
+fi
+
+alias dot-reload='. ~/.bashrc &> /dev/null'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
