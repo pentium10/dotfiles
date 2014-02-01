@@ -2,7 +2,8 @@ Getting Started
 ---------------
 * `git clone git://github.com/pentium10/dotfiles ~/.dotfiles`
 * `cd ~/.dotfiles`
-* `make install` (or if you don't have `make`, then `./install`)
+* `chmod +x install`
+* `./install` (or `make install`)
 
 If you `clone` to a non-standard location a.k.a not `$HOME/.dotfiles` be sure
 to edit `bash/bashrc.symlink` and update the `DOTFILES` variable.
